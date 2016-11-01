@@ -24,17 +24,19 @@ public class Client {
 		new Client("localhost", Integer.parseInt(args[0])).run();
 	}
 
-	public void run() throws IOException {
-		System.out.println("Login: ");
-		name = keyboard.readLine();
+	public void run() {
 		try {
+			System.out.print("Login: ");
+			name = keyboard.readLine();
 			out.writeUTF(name);
 			out.flush();
 			while (true) {
 				String line;
+				System.out.print("Message: ");
 				line = keyboard.readLine();
-				if (socket.isClosed())
+				if (socket.isClosed()) {
 					break;
+				}
 				out.writeUTF(line);
 				out.flush();
 				if (line.equals("@quit")) {
@@ -44,13 +46,12 @@ public class Client {
 				if (line.contains("@name"))
 					name = line.substring("@name".length() + 1);
 			}
-		} catch (Exception x) {
+		} catch (IOException x) {
 			x.printStackTrace();
 		} finally {
 			try {
 				socket.close();
 			} catch (IOException e) {
-				e.printStackTrace();
 			}
 		}
 	}
@@ -60,12 +61,16 @@ public class Client {
 		public void run() {
 			String line;
 			try {
-				while(true){
-				line = in.readUTF();
-				System.out.println("#" + name + ":" + line);
+				while (true) {
+					line = in.readUTF();
+					System.out.println(line);
 				}
 			} catch (IOException e) {
-				e.printStackTrace();
+				try {
+					socket.close();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 			}
 		}
 	}

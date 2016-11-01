@@ -1,12 +1,7 @@
 import java.net.*;
 import java.io.*;
 import java.util.concurrent.ConcurrentHashMap;
-/*Ќаписать текстовый многопользовательский чат. 
-ѕользователь управл€ет клиентом. Ќа сервере пользовател€ нет. 
-—ервер занимаетс€ пересылкой сообщений между клиентами
-ѕо умолчанию сообщение посылаетс€ всем участникам чата
-≈сть команда послать сообщение конкретное пользователи (@senduser Vasya)
-ѕрограмма работает по протоколу TCP.*/
+
 
 public class Server {
 	private ConcurrentHashMap<String, Socket> user = new ConcurrentHashMap<>();
@@ -25,7 +20,7 @@ public class Server {
 	public void run() throws IOException {
 		while (true) {
 			socket = ser_socket.accept();
-			System.out.println("User is connected");
+			//System.out.println("User is connected");
 			ServerDispatcher client = new ServerDispatcher(socket, user);
 			client.start();
 		}
