@@ -21,7 +21,7 @@ public class Client {
 
 	public static void main(String[] args) throws IOException {
 		System.out.println("Welcome!");
-		new Client("localhost", Integer.parseInt(args[0])).run();
+		new Client(args[1], Integer.parseInt(args[0])).run();
 	}
 
 	public void run() {

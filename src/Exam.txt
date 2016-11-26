@@ -1,0 +1,5 @@
+Piter 7 1 1 2 0
+Anna 8 5 5 5 5
+Kirill 5 5 5 2 0
+Kolya 0 0 0 0 9
+Ricky 8 7 7 7 7
