@@ -3,7 +3,6 @@ import java.net.Socket;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-/*Добавление через адд + оценку либо 00000, либо ввести*/
 public class ServerDispatcher extends Thread {
 	private ConcurrentHashMap<String, Socket> UserAll;
 	private ConcurrentHashMap<String, int[]> table;
